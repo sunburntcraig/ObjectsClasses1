@@ -7,6 +7,8 @@
 
 #include "MyADTs.hpp"
 #include <iostream>
+#include <queue>
+
 
 
 //--------ADT simple stack using array
@@ -946,6 +948,60 @@ void binaryTree::printPostOrder( btNode* thisNode) const
     std::cout<<" "<<thisNode->getData();
 
 }
+
+const btNode * binaryTree::findHelper( btNode* currentNode, const int target)
+{
+    int currentData = currentNode->getData();
+    
+    if ( (currentNode == NULL) || ( currentData == target) )
+        return currentNode;
+
+    if (target < currentData)
+        return findHelper(currentNode->getLeft(), target);
+    else
+        return findHelper(currentNode->getRight(), target);
+}
+
+const btNode * binaryTree::find(const int target)
+{
+    
+    return binaryTree::findHelper(root,target);
+}
+
+void binaryTree::levelOrderTraversal()
+{
+    std::queue<btNode*> levelQueue;
+    btNode *node = root;
+    
+    if (node == NULL)
+    {
+        std::cout<<"\nTree Empty!";
+        return;
+    }
+    
+    std::cout<<"\n Traversal\n";
+    
+    levelQueue.push(node);
+    
+    
+    while (!levelQueue.empty())
+    {
+        node = levelQueue.front();
+        levelQueue.pop();
+        
+        std::cout<<" "<<node->getData();
+        
+        
+        if (node->getLeft() != NULL)
+            levelQueue.push(node->getLeft());
+        
+        if (node->getRight() != NULL)
+            levelQueue.push(node->getRight());
+        
+    }
+    
+}
+
 
 bool binaryTree::traversePre()
 {

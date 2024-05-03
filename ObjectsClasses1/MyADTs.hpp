@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <iomanip>
+#include <stack>
 
 // ----------- Array based stack
 class stack{
@@ -185,6 +186,8 @@ public:
     bool isEmpty() { return (root == NULL);};
     enum traverse { PreOrder, InOrder, PostOrder};
     void print(const traverse);
+    const btNode * find(const int target);
+    void levelOrderTraversal();
     
 private:
     enum flag {left,right};
@@ -196,9 +199,14 @@ private:
     void printPostOrder( btNode* ) const;
     void extractSubTree(btNode* , llStack &);
     void deleteSubTree(btNode* );
+    const btNode *findHelper( btNode*, const int );
+
     
     btNode *root;
     int count; 
 };
+
+
+
 
 #endif /* MyADTs_hpp */

@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <time.h>
+#include <stack>
 #include "MyADTs.hpp"
 #include "deitelclasses.hpp"
 #include "templateADTS.hpp"
@@ -41,42 +42,108 @@ std::ostream &operator<<(std::ostream& output,const SimpleClass &simple)
     
 }
 
+bool isDigit(const char character)
+{
+    bool found = false;
+    char theDigits[] = {'0','1','2','3','4','5','6','7','8','9'};
+
+    for (int i = 0; i<10; i++)
+        if (theDigits[i] == character)
+            found =true;
+    
+    return found;
+}
+
+bool isOperator(const char character)
+{
+    bool found = false;
+    char theOperators[] = {'^','/','%','*','+','-'};
+    
+    for (int i = 0; i<6; i++)
+        if (theOperators[i] == character)
+            found =true;
+    
+    return found;
+}
+
+bool higherprecedence(const char operator1,const char operator2)
+{
+    char theOperators[] = {'-','+','*','%','/','^'};
+    
+    int op1, op2;
+    
+    for (int i = 0; i<6; i++)
+    {
+        if (theOperators[i] == operator1) op1 = i;
+        if (theOperators[i] == operator2) op2 = i;
+    }
+    
+    return (op1 >= op2);
+}
+
+void infixToPostFix(std::string infixExpression)
+{
+    int i=0;
+    std::stack<char> theStack, tempStack;
+    std::string postfix ="";
+  
+    theStack.push('(');
+    infixExpression = infixExpression + ")";
+    
+    while (!theStack.empty())
+    {
+        if (isDigit(infixExpression[i]))
+            postfix = postfix+infixExpression[i];
+        
+        if (infixExpression[i] == '(')
+            theStack.push('(');
+        
+        if (isOperator(infixExpression[i]))
+            {
+                   while (isOperator(theStack.top()) && higherprecedence(theStack.top(),infixExpression[i]))
+                   {
+                       postfix=postfix+theStack.top();
+                       theStack.pop();
+                   }
+                theStack.push(infixExpression[i]);
+             }
+        
+        if (infixExpression[i] == ')')
+        {
+            while (theStack.top()!='(')
+            {
+                postfix=postfix + theStack.top();
+                theStack.pop();
+            }
+        
+            theStack.pop();
+        }
+       std::cout<<"\n PostFix: "<<postfix;
+        i++;
+     }
+    
+}
+
 
 
 int main(int argc, const char * argv[]) {
     
+    binaryTree theTree;
+    int data;
     
- //   int i=0, removed =-1;;
-    //Node<int> node(9);
-
-    binaryTree *myTree = new binaryTree;
-    int i;
-    //srand(time(NULL));
-
-
-    for (int z=1; z<10;z++)
+    std::cout<<"\n Generate:";
+    for (int i = 0; i<30;i++)
     {
-        i = (rand() % 9) +1;
-        std::cout<<" "<<i;
-        myTree->insertData(i++);
+        std::cout<<" "<<(data = random()% 20);
+        theTree.insertData(data);
     }
-    std::cout<< "\n Tree:";
-    myTree->print(binaryTree::PreOrder);
     
-    int toRemove =1;
+    theTree.print(binaryTree::PreOrder);
     
-
-    while (toRemove)
-    {
-        std::cout<<"\n To Delete:";
-        std::cin>>toRemove;
-        myTree->deleteData(toRemove);
-        myTree->print(binaryTree::PreOrder);
-    }
-   // std::cout<<myList;
+    theTree.levelOrderTraversal();
+    
     std::cout <<"\n";
     
-    delete myTree;
 
     return 0;
 }
