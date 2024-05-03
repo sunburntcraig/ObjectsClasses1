@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E78DE6A22BD683F6003DE0A5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6A12BD683F6003DE0A5 /* main.cpp */; };
+		E78DE6B02BD684D4003DE0A5 /* MyADTs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6AE2BD684D4003DE0A5 /* MyADTs.cpp */; };
+		E78DE6B32BD7EEAE003DE0A5 /* deitelclasses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6B12BD7EEAE003DE0A5 /* deitelclasses.cpp */; };
+		E78DE6B62BE0FE3C003DE0A5 /* templateADTS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6B42BE0FE3C003DE0A5 /* templateADTS.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +28,12 @@
 /* Begin PBXFileReference section */
 		E78DE69E2BD683F6003DE0A5 /* ObjectsClasses1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectsClasses1; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78DE6A12BD683F6003DE0A5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		E78DE6AE2BD684D4003DE0A5 /* MyADTs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyADTs.cpp; sourceTree = "<group>"; };
+		E78DE6AF2BD684D4003DE0A5 /* MyADTs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MyADTs.hpp; sourceTree = "<group>"; };
+		E78DE6B12BD7EEAE003DE0A5 /* deitelclasses.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = deitelclasses.cpp; sourceTree = "<group>"; };
+		E78DE6B22BD7EEAE003DE0A5 /* deitelclasses.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = deitelclasses.hpp; sourceTree = "<group>"; };
+		E78DE6B42BE0FE3C003DE0A5 /* templateADTS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = templateADTS.cpp; sourceTree = "<group>"; };
+		E78DE6B52BE0FE3C003DE0A5 /* templateADTS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = templateADTS.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,12 @@
 			isa = PBXGroup;
 			children = (
 				E78DE6A12BD683F6003DE0A5 /* main.cpp */,
+				E78DE6AE2BD684D4003DE0A5 /* MyADTs.cpp */,
+				E78DE6AF2BD684D4003DE0A5 /* MyADTs.hpp */,
+				E78DE6B12BD7EEAE003DE0A5 /* deitelclasses.cpp */,
+				E78DE6B22BD7EEAE003DE0A5 /* deitelclasses.hpp */,
+				E78DE6B42BE0FE3C003DE0A5 /* templateADTS.cpp */,
+				E78DE6B52BE0FE3C003DE0A5 /* templateADTS.hpp */,
 			);
 			path = ObjectsClasses1;
 			sourceTree = "<group>";
@@ -120,6 +135,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E78DE6A22BD683F6003DE0A5 /* main.cpp in Sources */,
+				E78DE6B62BE0FE3C003DE0A5 /* templateADTS.cpp in Sources */,
+				E78DE6B02BD684D4003DE0A5 /* MyADTs.cpp in Sources */,
+				E78DE6B32BD7EEAE003DE0A5 /* deitelclasses.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
