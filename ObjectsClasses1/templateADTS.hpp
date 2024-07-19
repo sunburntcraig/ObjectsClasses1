@@ -94,7 +94,7 @@ void Node<NodeDataType>::setNext(Node *ptrNext)
 
 
 template< class NodeDataType >
-LinkedList<NodeDataType>::LinkedList() : first(NULL),last(NULL),count(0)
+LinkedList<NodeDataType>::LinkedList() : first(nullptr),last(nullptr),count(0)
 {
     //empty, initialized above
 }
@@ -104,7 +104,7 @@ LinkedList<NodeDataType>::~LinkedList()
 {
     Node<NodeDataType> *iter = first;
     
-    while (first!=NULL)
+    while (first!=nullptr)
     {
         first = iter->getNext();
         delete iter;
@@ -115,11 +115,11 @@ LinkedList<NodeDataType>::~LinkedList()
 template< class NodeDataType >
     void LinkedList<NodeDataType>::putEnd(const NodeDataType &node)
 {
-        Node<NodeDataType> *newNode = new Node<NodeDataType>(node), *iter = NULL;
+        Node<NodeDataType> *newNode = new Node<NodeDataType>(node), *iter = nullptr;
 
-        newNode->setNext(NULL);
+        newNode->setNext(nullptr);
         
-        if (first == NULL)
+        if (first == nullptr)
         {
             first = last = newNode;
         }
@@ -151,7 +151,7 @@ bool LinkedList<NodeDataType>::removeEnd(NodeDataType &node)
     if (first == last)
     {
         delete last;
-        first = last = NULL;
+        first = last = nullptr;
     }
    else
     {
@@ -160,7 +160,7 @@ bool LinkedList<NodeDataType>::removeEnd(NodeDataType &node)
             prior = prior->getNext();
 
         delete last;
-        prior->setNext(NULL);
+        prior->setNext(nullptr);
         last = prior;
        
     }
@@ -176,7 +176,7 @@ void LinkedList<NodeDataType>::putStart(const NodeDataType &node)
     if (isEmpty())
     {
        first = last = newNode;
-       newNode->setNext(NULL);
+       newNode->setNext(nullptr);
     }
    else
     {
@@ -198,7 +198,7 @@ bool LinkedList<NodeDataType>::removeStart(NodeDataType &node)
     node = oldNode->getData();
     
     if (first == last)
-        first = last = NULL;
+        first = last = nullptr;
     else
         first = first->getNext();
 
@@ -227,11 +227,11 @@ void LinkedList<NodeDataType>::print()
     
     std::cout<<"\nList";
     
-    if (iter == NULL)
+    if (iter == nullptr)
         std::cout<<" is Empty!";
     else
     {
-        while (iter!=NULL)
+        while (iter!=nullptr)
         {
             std::cout<< " "<<iter->getData();
             iter = iter->getNext();
@@ -255,17 +255,20 @@ std::ostream &operator<<(std::ostream &output, const LinkedList<NodeDataType> &t
     
     std::cout<<"\nList";
     
-    if (iter == NULL)
+    if (iter == nullptr)
         std::cout<<" is Empty!";
     else
     {
-        while (iter!=NULL)
+        while (iter!=nullptr)
         {
             std::cout<< " "<<iter->getData();
             iter = iter->getNext();
         }
     }
 }
+
+
+
 
 
 

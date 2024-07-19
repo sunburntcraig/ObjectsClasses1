@@ -54,21 +54,23 @@ bool isDigit(const char character)
     return found;
 }
 
+char theOperators[] = {'^','/','%','*','+','-'};
+
 bool isOperator(const char character)
 {
     bool found = false;
-    char theOperators[] = {'^','/','%','*','+','-'};
+    // char theOperators[] = {'^','/','%','*','+','-'};
     
     for (int i = 0; i<6; i++)
         if (theOperators[i] == character)
             found =true;
     
-    return found;
+    return found ;
 }
 
 bool higherprecedence(const char operator1,const char operator2)
 {
-    char theOperators[] = {'-','+','*','%','/','^'};
+   // char theOperators[] = {'-','+','*','%','/','^'};
     
     int op1, op2;
     
@@ -128,11 +130,11 @@ void infixToPostFix(std::string infixExpression)
 
 int main(int argc, const char * argv[]) {
     
-    binaryTree theTree;
-    int data;
+    //binaryTree theTree;
+    //int data;
     
     std::cout<<"\n Generate:";
-    for (int i = 0; i<30;i++)
+ /*   for (int i = 0; i<30;i++)
     {
         std::cout<<" "<<(data = random()% 20);
         theTree.insertData(data);
@@ -140,7 +142,29 @@ int main(int argc, const char * argv[]) {
     
     theTree.print(binaryTree::PreOrder);
     
-    theTree.levelOrderTraversal();
+    theTree.breadthFirstTraversal();
+   */
+    int num = 9;
+    BSearchT<int>* tree = new BSearchT<int>(num);
+    
+    for (int i = 0; i<30;i++)
+        {
+            int data;
+            std::cout<<" "<<(data = random()% 30);
+            tree->attachKey(data);
+            
+            std::cout<<"\nMin:"<<tree->findMin()<<"  Max:"<<tree->findMax()<<" ";
+            
+        }
+    
+    std::cout<<"\n\n Pre:";
+    tree->depthFirstTraverse(PreOrder);
+    std::cout<<"\n In:";
+    tree->depthFirstTraverse(InOrder);
+    std::cout<<"\n Post";
+    tree->depthFirstTraverse(PostOrder);
+
+    
     
     std::cout <<"\n";
     

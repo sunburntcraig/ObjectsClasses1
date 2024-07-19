@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-// class and methods are defined in accompanying .cpp file
+// class and methods are defined in accompanying .hpp file
 // otherwise the compiler throws errors.
 
 

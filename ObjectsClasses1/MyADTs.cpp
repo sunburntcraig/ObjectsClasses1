@@ -235,7 +235,7 @@ std::ostream &operator<<(std::ostream &output, const queueL &theQ)
 //--------ADT Node
 node::node()
 {
-    nextNode = NULL;
+    nextNode = nullptr;
     value = 0;
 }
 node::node(node* next, int val)
@@ -273,7 +273,7 @@ node* node::getNext()
 
 lList::lList()
 {
-    start = last = NULL;
+    start = last = nullptr;
     size = 0;
 }
 
@@ -286,9 +286,9 @@ lList::~lList()
 
 void lList::append(int val)
 {
-    node *newnode = new node(NULL,val);
+    node *newnode = new node(nullptr,val);
     
-    if (start == NULL)
+    if (start == nullptr)
     {
         start = newnode;
         last = start;
@@ -307,14 +307,14 @@ void lList::clip()
     node *prior = start;
     
     // List empty, do nothing
-    if (start == NULL)
+    if (start == nullptr)
         return;
     
     // only 1 element
     if (start == last)
     {
         delete start;
-        start = last = NULL;
+        start = last = nullptr;
     }
     else
     {
@@ -323,7 +323,7 @@ void lList::clip()
             prior = prior->getNext();
         }
         delete prior->getNext();
-        prior->setNext(NULL);
+        prior->setNext(nullptr);
         last = prior;
     }
     size--;
@@ -349,7 +349,7 @@ node *lList::getNthNode(int index)
     node *nptr = start;
     
     if (index > size || index == 0)
-        return NULL;
+        return nullptr;
 
     for (counter = 1; counter < index; nptr = nptr->getNext(),counter++) ; //empty loop
     
@@ -394,7 +394,7 @@ void lList::print() const
     node *nptr = start;
     std::cout<<"\nList elements :";
     
-    while (nptr != NULL)
+    while (nptr != nullptr)
     {
         std::cout<<nptr->getValue()<<" ";
         nptr = nptr->getNext();
@@ -408,7 +408,7 @@ std::ostream &operator<<(std::ostream& output, const lList &theList)
     node *nptr = theList.start;
     output<<"\nList elements :";
     
-    while (nptr != NULL)
+    while (nptr != nullptr)
     {
         output<<nptr->getValue()<<" ";
         nptr = nptr->getNext();
@@ -601,14 +601,14 @@ bool btNode::operator==(const int newData)const
 // --------- Binary Tree
 
 
-binaryTree::binaryTree() :root(NULL), count(0)
+binaryTree::binaryTree() :root(nullptr), count(0)
 {
     
 }
 
 binaryTree::~binaryTree()
 {
-    if (root == NULL)
+    if (root == nullptr)
         return;
     
     btNode *leftTree = root->getLeft(),
@@ -625,9 +625,9 @@ bool binaryTree::insertData(const int newData)
     return insertHelp(newData, root);
 }
 
-/* btNode *left =NULL; btNode *right = NULL;
+/* btNode *left =nullptr; btNode *right = nullptr;
  
- if (thisNode == NULL)
+ if (thisNode == nullptr)
  {
      btNode *newNode = new btNode(newData);
      thisNode = newNode;
@@ -658,27 +658,27 @@ bool binaryTree::insertHelp(const int newData, btNode* &thisNode)
 {
    
     
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
     {
         btNode *newNode = new btNode(newData);
         thisNode = newNode;
         return true;
     }
     
-    btNode *Node = NULL, *nextLeft, *nextRight;
+    btNode *Node = nullptr, *nextLeft, *nextRight;
     int thisData = thisNode->getData();
     Node = thisNode;
     nextLeft = thisNode->getLeft();
     nextRight = thisNode->getRight();
     
-    while (Node!= NULL )
+    while (Node!= nullptr )
     {
         if (thisData == newData)
              return false;
         else
             if (newData > thisData)
             {
-                if (nextRight != NULL)
+                if (nextRight != nullptr)
                 {
                     Node =  Node->getRight();
                     thisData =  Node->getData();
@@ -693,7 +693,7 @@ bool binaryTree::insertHelp(const int newData, btNode* &thisNode)
             }
             else  //newData < thisData
             {
-                if (nextLeft != NULL)
+                if (nextLeft != nullptr)
                 {
                     Node =  Node->getLeft();
                     thisData =  Node->getData();
@@ -731,7 +731,7 @@ bool binaryTree::deleteData(const int delData)
         extractSubTree(nextRight, tempStack);
         
         delete root;
-        root = NULL;
+        root = nullptr;
         
         while (tempStack.pop(stackTop))
             insertData(stackTop);
@@ -751,16 +751,16 @@ bool binaryTree::deleteHelp(const int delData,btNode* prior, btNode* thisNode, f
 {
     bool found = false;
     
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return found;
     
-    btNode *Node = NULL, *nextLeft, *nextRight;
+    btNode *Node = nullptr, *nextLeft, *nextRight;
     int thisData, stackTop;
     llStack tempStack;
     
     Node = thisNode;
     
-    while ( Node!=NULL )
+    while ( Node!=nullptr )
     {
         thisData = Node->getData();
         nextLeft = Node->getLeft();
@@ -773,8 +773,8 @@ bool binaryTree::deleteHelp(const int delData,btNode* prior, btNode* thisNode, f
             extractSubTree(nextRight, tempStack);
             
             // turn this to a leaf node and re-insert subtree elements
-            Node->setLeft(NULL);
-            Node->setRight(NULL);
+            Node->setLeft(nullptr);
+            Node->setRight(nullptr);
             
            if (tempStack.pop(stackTop))
            {
@@ -786,11 +786,11 @@ bool binaryTree::deleteHelp(const int delData,btNode* prior, btNode* thisNode, f
            else // empty subtrees;
            {
                delete Node;
-               Node = NULL;
+               Node = nullptr;
                if (lr == left)
-                   prior->setLeft(NULL);
+                   prior->setLeft(nullptr);
                else
-                   prior->setRight(NULL);
+                   prior->setRight(nullptr);
            }
             
             count--;
@@ -821,10 +821,10 @@ bool binaryTree::deleteHelper(const int delData,btNode* prior, btNode* thisNode,
 {
     bool found = false;
     
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return found;
     
-    btNode *Node = NULL, *nextLeft, *nextRight;
+    btNode *Node = nullptr, *nextLeft, *nextRight;
     int thisData, stackTop;
     llStack tempStack;
     
@@ -840,8 +840,8 @@ bool binaryTree::deleteHelper(const int delData,btNode* prior, btNode* thisNode,
         extractSubTree(nextRight, tempStack);
             
         // turn this to a leaf node and re-insert subtree elements
-        Node->setLeft(NULL);
-        Node->setRight(NULL);
+        Node->setLeft(nullptr);
+        Node->setRight(nullptr);
             
         if (tempStack.pop(stackTop))
            {
@@ -853,11 +853,11 @@ bool binaryTree::deleteHelper(const int delData,btNode* prior, btNode* thisNode,
         else // empty subtrees;
            {
                delete Node;
-               Node = NULL;
+               Node = nullptr;
                if (lr == left)
-                   prior->setLeft(NULL);
+                   prior->setLeft(nullptr);
                else
-                   prior->setRight(NULL);
+                   prior->setRight(nullptr);
            }
             
             count--;
@@ -874,7 +874,7 @@ bool binaryTree::deleteHelper(const int delData,btNode* prior, btNode* thisNode,
 
 void binaryTree::extractSubTree(btNode* thisNode, llStack &theStack)
 {
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return;
     
     extractSubTree(thisNode->getLeft(), theStack);
@@ -885,7 +885,7 @@ void binaryTree::extractSubTree(btNode* thisNode, llStack &theStack)
 
 void binaryTree::deleteSubTree(btNode* thisNode)
 {
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return;
     
     deleteSubTree(thisNode->getLeft());
@@ -918,7 +918,7 @@ void binaryTree::print(const traverse order)
 
 void binaryTree::printPreOrder( btNode* thisNode) const
 {
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return;
     
     std::cout<<" "<<thisNode->getData();
@@ -929,7 +929,7 @@ void binaryTree::printPreOrder( btNode* thisNode) const
 
 void binaryTree::printInOrder( btNode* thisNode) const
 {
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return;
         
     printInOrder(thisNode->getLeft());
@@ -940,7 +940,7 @@ void binaryTree::printInOrder( btNode* thisNode) const
 
 void binaryTree::printPostOrder( btNode* thisNode) const
 {
-    if (thisNode == NULL)
+    if (thisNode == nullptr)
         return;
     
     printPostOrder(thisNode->getLeft());
@@ -953,7 +953,7 @@ const btNode * binaryTree::findHelper( btNode* currentNode, const int target)
 {
     int currentData = currentNode->getData();
     
-    if ( (currentNode == NULL) || ( currentData == target) )
+    if ( (currentNode == nullptr) || ( currentData == target) )
         return currentNode;
 
     if (target < currentData)
@@ -968,12 +968,12 @@ const btNode * binaryTree::find(const int target)
     return binaryTree::findHelper(root,target);
 }
 
-void binaryTree::levelOrderTraversal()
+void binaryTree::breadthFirstTraversal()
 {
     std::queue<btNode*> levelQueue;
     btNode *node = root;
     
-    if (node == NULL)
+    if (node == nullptr)
     {
         std::cout<<"\nTree Empty!";
         return;
@@ -992,10 +992,10 @@ void binaryTree::levelOrderTraversal()
         std::cout<<" "<<node->getData();
         
         
-        if (node->getLeft() != NULL)
+        if (node->getLeft() != nullptr)
             levelQueue.push(node->getLeft());
         
-        if (node->getRight() != NULL)
+        if (node->getRight() != nullptr)
             levelQueue.push(node->getRight());
         
     }
@@ -1018,7 +1018,3 @@ bool binaryTree::traversePost()
     return true;
 
 }
-
-
-
-
