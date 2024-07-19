@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iomanip>
 #include <stack>
+#include <queue>
 #include <iostream>
 
 // ----------- Array based stack
@@ -405,11 +406,12 @@ public:
     BSearchT(NodeKey&);
     ~BSearchT();
     virtual void attachKey(NodeKey&);
-    virtual void detachKey(NodeKey&);
+    virtual NodeKey& detachKey();
     BSearchT& getLeft() const;
     BSearchT& getRight() const;
     NodeKey findMin();
     NodeKey findMax();
+    void remove(NodeKey&);
     
 protected:
     void Balance();
@@ -429,7 +431,8 @@ BSearchT<NodeKey>::BSearchT(NodeKey& d) : BTAlternative<NodeKey>(d)
 template <class NodeKey>
 BSearchT<NodeKey>::~BSearchT()
 {
-    ~BTAlternative<NodeKey>();
+    BSearchT<NodeKey>::Purge();
+
 }
 
 template <class NodeKey>
@@ -490,13 +493,42 @@ void BSearchT<NodeKey>::attachKey(NodeKey & d)
 }
 
 template <class NodeKey>
-void BSearchT<NodeKey>::detachKey(NodeKey & d)
+NodeKey& BSearchT<NodeKey>::detachKey()
 {
-    
-    
+    return BTAlternative<NodeKey>::detachKey();
 }
 
-
+template <class NodeKey>
+void BSearchT<NodeKey>::remove(NodeKey & d)
+{
+    if ( BSearchT<NodeKey>::isEmpty() )
+        throw std::domain_error("Key Not Found");
+    
+    NodeKey diff = d - *BSearchT<NodeKey>::key;
+    
+   if (diff == 0)
+    {
+            if ( !BSearchT<NodeKey>::getLeft().isEmpty() )
+            {
+                NodeKey max = BSearchT<NodeKey>::getLeft().findMax();
+                *BSearchT<NodeKey>::key = max;
+                BSearchT<NodeKey>::getLeft().remove(max);
+            }
+            else if (!BSearchT<NodeKey>::getRight().isEmpty())
+            {
+                NodeKey min = BSearchT<NodeKey>::getRight().findMin();
+                *BSearchT<NodeKey>::key = min;
+                BSearchT<NodeKey>::getRight().remove(min);
+            }
+            else
+                detachKey();
+        
+    }
+    else if (diff<0)
+        BSearchT<NodeKey>::getLeft().remove(d);
+    else
+        BSearchT<NodeKey>::getRight().remove(d);
+}
 
 
 #endif /* MyADTs_hpp */

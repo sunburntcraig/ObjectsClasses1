@@ -152,20 +152,27 @@ int main(int argc, const char * argv[]) {
             int data;
             std::cout<<" "<<(data = random()% 30);
             tree->attachKey(data);
-            
-            std::cout<<"\nMin:"<<tree->findMin()<<"  Max:"<<tree->findMax()<<" ";
-            
         }
     
-    std::cout<<"\n\n Pre:";
-    tree->depthFirstTraverse(PreOrder);
+  //  std::cout<<"\n\n Pre:";
+ //   tree->depthFirstTraverse(PreOrder);
     std::cout<<"\n In:";
     tree->depthFirstTraverse(InOrder);
-    std::cout<<"\n Post";
-    tree->depthFirstTraverse(PostOrder);
+ //   std::cout<<"\n Post";
+ //   tree->depthFirstTraverse(PostOrder);
 
-    
-    
+    int toDelete = 1;
+    while ( toDelete)
+    {
+        std::cout<<"\n To Delete: ";
+        std::cin>> toDelete;
+        tree->remove(toDelete);
+        
+        std::cout<<"\n In:";
+        tree->depthFirstTraverse(InOrder);
+    };
+        
+
     std::cout <<"\n";
     
 
