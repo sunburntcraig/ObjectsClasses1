@@ -227,9 +227,10 @@ protected:
 public:
     BTAlternative() : key(nullptr), left(nullptr), right(nullptr), height(0) {};
     BTAlternative(NodeKey&);
+  //  BTAlternative(BTAlternative<NodeKey>& other) : key(other.key), left(other.left), right(other.right), height(0) {} ;
     ~BTAlternative();
     
-    NodeKey& Key() const;
+    NodeKey& Key() ;
     BTAlternative& LeftTree() const;
     BTAlternative& RightTree() const;
     // --- Utility methods
@@ -244,6 +245,7 @@ public:
     
     // --- traversal methods
     void breadthFirstTraverse();
+    void breadthFirstTraverseAlt();
     void depthFirstTraverse(const traverseOrder);
 
 
@@ -283,7 +285,7 @@ void BTAlternative<NodeKey>::Purge()
 }
 
 template <class NodeKey>
-NodeKey& BTAlternative<NodeKey>::Key() const
+NodeKey& BTAlternative<NodeKey>::Key()
 {
     if (isEmpty())
         throw std::domain_error("Invalid key access operation");
@@ -361,7 +363,86 @@ void BTAlternative<NodeKey>::depthFirstTraverse(const traverseOrder order)
 template <class NodeKey>
 void BTAlternative<NodeKey>::breadthFirstTraverse()
 {
+   
+    std::queue<BTAlternative<NodeKey>> theQ;
+    // BTAlternative<NodeKey> BTnode(dynamic_cast<BTAlternative<NodeKey>&>(*this));
+    //BTAlternative<NodeKey>* leftN;
+    //BTAlternative<NodeKey>* rightN;
     
+    theQ.push(*this);
+    
+    while (!theQ.empty())
+    {
+        std::cout<<theQ.front().Key();
+        
+        theQ.push(*(theQ.front().left));
+        theQ.push(*(theQ.front().right));
+        
+        theQ.pop();
+        
+      /*
+        leftN = new BTAlternative<NodeKey>(dynamic_cast<BTAlternative<NodeKey>&>( *(theQ.front().left)));
+      
+        theQ.push( *leftN );
+   
+        rightN = new BTAlternative<NodeKey>(dynamic_cast<BTAlternative<NodeKey>&>( *(theQ.front().right)));
+ 
+        theQ.push( *rightN );
+     
+        theQ.pop();
+
+       */
+    }
+  
+}
+
+template <class NodeKey>
+void BTAlternative<NodeKey>::breadthFirstTraverseAlt()
+{
+    /* Horrible hack to because my elegant solution above gets
+       stymied by the fact that stl queue pop() function deletes
+      the element being popped and I was pushing the tree nodes themselves*/
+    
+    struct tempNode{
+        NodeKey* key;
+        BTAlternative<NodeKey> *left;
+        BTAlternative<NodeKey> *right;
+    }* tnode;
+    std::queue<tempNode*> theQ;
+     
+    tnode = new tempNode;
+    tnode->key = key;
+    tnode->left = left;
+    tnode->right = right;
+    
+    theQ.push(tnode);
+    
+    while (!theQ.empty())
+    {
+        std::cout<<"Key :"<<*(theQ.front()->key)<<" ";
+  
+        
+        tnode = new tempNode;
+        tnode->key = theQ.front()->left->key;
+        tnode->left = theQ.front()->left->left;;
+        tnode->right = theQ.front()->left->right;
+        
+        if ( !(tnode->key == nullptr) )
+            theQ.push(tnode);
+        
+        tnode = new tempNode;
+        tnode->key = theQ.front()->right->key;
+        tnode->left = theQ.front()->right->left;;
+        tnode->right = theQ.front()->right->right;
+        
+        if ( !(tnode->key==nullptr) )
+            theQ.push(tnode);
+     
+        theQ.pop();
+
+       
+    }
+  
 }
 
 template <class NodeKey>

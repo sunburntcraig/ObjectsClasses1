@@ -161,6 +161,9 @@ int main(int argc, const char * argv[]) {
  //   std::cout<<"\n Post";
  //   tree->depthFirstTraverse(PostOrder);
 
+    std::cout<<"\n Breadth:";
+    tree->breadthFirstTraverseAlt();
+    
     int toDelete = 1;
     while ( toDelete)
     {
@@ -168,8 +171,8 @@ int main(int argc, const char * argv[]) {
         std::cin>> toDelete;
         tree->remove(toDelete);
         
-        std::cout<<"\n In:";
-        tree->depthFirstTraverse(InOrder);
+        std::cout<<"\n Breadth:";
+        tree->breadthFirstTraverseAlt();
     };
         
 
