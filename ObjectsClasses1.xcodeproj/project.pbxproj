@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E71458F02C4E65A700BCE19A /* graphclasses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E71458EE2C4E65A700BCE19A /* graphclasses.cpp */; };
 		E78DE6A22BD683F6003DE0A5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6A12BD683F6003DE0A5 /* main.cpp */; };
 		E78DE6B02BD684D4003DE0A5 /* MyADTs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6AE2BD684D4003DE0A5 /* MyADTs.cpp */; };
 		E78DE6B32BD7EEAE003DE0A5 /* deitelclasses.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E78DE6B12BD7EEAE003DE0A5 /* deitelclasses.cpp */; };
@@ -26,6 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E71458EE2C4E65A700BCE19A /* graphclasses.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphclasses.cpp; sourceTree = "<group>"; };
+		E71458EF2C4E65A700BCE19A /* graphclasses.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graphclasses.hpp; sourceTree = "<group>"; };
 		E78DE69E2BD683F6003DE0A5 /* ObjectsClasses1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ObjectsClasses1; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78DE6A12BD683F6003DE0A5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		E78DE6AE2BD684D4003DE0A5 /* MyADTs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MyADTs.cpp; sourceTree = "<group>"; };
@@ -73,6 +76,8 @@
 				E78DE6B22BD7EEAE003DE0A5 /* deitelclasses.hpp */,
 				E78DE6B42BE0FE3C003DE0A5 /* templateADTS.cpp */,
 				E78DE6B52BE0FE3C003DE0A5 /* templateADTS.hpp */,
+				E71458EE2C4E65A700BCE19A /* graphclasses.cpp */,
+				E71458EF2C4E65A700BCE19A /* graphclasses.hpp */,
 			);
 			path = ObjectsClasses1;
 			sourceTree = "<group>";
@@ -135,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E78DE6A22BD683F6003DE0A5 /* main.cpp in Sources */,
+				E71458F02C4E65A700BCE19A /* graphclasses.cpp in Sources */,
 				E78DE6B62BE0FE3C003DE0A5 /* templateADTS.cpp in Sources */,
 				E78DE6B02BD684D4003DE0A5 /* MyADTs.cpp in Sources */,
 				E78DE6B32BD7EEAE003DE0A5 /* deitelclasses.cpp in Sources */,

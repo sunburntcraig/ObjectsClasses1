@@ -11,6 +11,7 @@
 #include "MyADTs.hpp"
 #include "deitelclasses.hpp"
 #include "templateADTS.hpp"
+#include "graphclasses.hpp"
 
 class SimpleClass {
     
@@ -133,51 +134,29 @@ int main(int argc, const char * argv[]) {
     //binaryTree theTree;
     //int data;
     
-    std::cout<<"\n Generate:";
- /*   for (int i = 0; i<30;i++)
+   
+    
+    
+    graphAdjacency<char> myGraph;
+    
+    myGraph.addVertex('A');
+    myGraph.addVertex('B');
+    myGraph.addVertex('C');
+    myGraph.addVertex('D');
+    myGraph.addVertex('E');
+
+    myGraph.printVertices();
+    
+    char v;
+    
+    while (1)
     {
-        std::cout<<" "<<(data = random()% 20);
-        theTree.insertData(data);
+        
+        
+        
+        
     }
     
-    theTree.print(binaryTree::PreOrder);
     
-    theTree.breadthFirstTraversal();
-   */
-    int num = 9;
-    BSearchT<int>* tree = new BSearchT<int>(num);
-    
-    for (int i = 0; i<30;i++)
-        {
-            int data;
-            std::cout<<" "<<(data = random()% 30);
-            tree->attachKey(data);
-        }
-    
-  //  std::cout<<"\n\n Pre:";
- //   tree->depthFirstTraverse(PreOrder);
-    std::cout<<"\n In:";
-    tree->depthFirstTraverse(InOrder);
- //   std::cout<<"\n Post";
- //   tree->depthFirstTraverse(PostOrder);
-
-    std::cout<<"\n Breadth:";
-    tree->breadthFirstTraverseAlt();
-    
-    int toDelete = 1;
-    while ( toDelete)
-    {
-        std::cout<<"\n To Delete: ";
-        std::cin>> toDelete;
-        tree->remove(toDelete);
-        
-        std::cout<<"\n Breadth:";
-        tree->breadthFirstTraverseAlt();
-    };
-        
-
-    std::cout <<"\n";
-    
-
     return 0;
 }
