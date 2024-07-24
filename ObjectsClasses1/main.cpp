@@ -137,24 +137,40 @@ int main(int argc, const char * argv[]) {
    
     
     
-    graphAdjacency<char> myGraph;
+    graphList<char> myGraph;
     
+    myGraph.addVertex('C');
+    myGraph.addVertex('D');
+    myGraph.addVertex('E');
+    myGraph.addVertex('C');
     myGraph.addVertex('A');
     myGraph.addVertex('B');
     myGraph.addVertex('C');
     myGraph.addVertex('D');
     myGraph.addVertex('E');
+    myGraph.addVertex('C');
+   
+    myGraph.addVertex('G');
+    myGraph.addVertex('F');
 
     myGraph.printVertices();
+    std::cout<<" Vertices Count :"<<myGraph.numVertices();
     
-    char v;
+    char v1, v2;
     
     while (1)
     {
+        std::cout<<"\n Vertex1: ";
+        std::cin>>v1;
         
+        std::cout<<"\n Vertex2: ";
+        std::cin>>v2;
         
-        
-        
+        myGraph.addEdge(v1,v2);
+ 
+        myGraph.printEdges();
+        std::cout<<"\n";
+       
     }
     
     
