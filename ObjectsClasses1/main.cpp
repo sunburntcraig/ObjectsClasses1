@@ -139,22 +139,28 @@ int main(int argc, const char * argv[]) {
     
     graphList<char> myGraph;
     
-    myGraph.addVertex('C');
-    myGraph.addVertex('D');
-    myGraph.addVertex('E');
-    myGraph.addVertex('C');
     myGraph.addVertex('A');
     myGraph.addVertex('B');
     myGraph.addVertex('C');
     myGraph.addVertex('D');
-    myGraph.addVertex('E');
-    myGraph.addVertex('C');
-   
-    myGraph.addVertex('G');
     myGraph.addVertex('F');
+    myGraph.addVertex('G');
+    
 
     myGraph.printVertices();
-    std::cout<<" Vertices Count :"<<myGraph.numVertices();
+    
+    
+    myGraph.addEdge('A','B');
+    myGraph.addEdge('B','C');
+    myGraph.addEdge('B','D');
+    myGraph.addEdge('B','E');
+    myGraph.addEdge('D','F');
+    myGraph.addEdge('D','E');
+    myGraph.addEdge('F','G');
+
+    std::cout<<"\n Vertices Count :"<<myGraph.numVertices();
+    myGraph.printEdges();
+
     
     char v1, v2;
     
@@ -166,7 +172,9 @@ int main(int argc, const char * argv[]) {
         std::cout<<"\n Vertex2: ";
         std::cin>>v2;
         
-        myGraph.addEdge(v1,v2);
+        std::cout<<"\n Delete: "<<v1<<"-"<<v2;
+        
+        myGraph.deleteEdge(v1,v2);
  
         myGraph.printEdges();
         std::cout<<"\n";

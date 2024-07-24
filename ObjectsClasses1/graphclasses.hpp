@@ -395,18 +395,35 @@ void graphList<KeyType>::deleteEdge(KeyType vertex1, KeyType vertex2)
         return;
     
     // delete edge v1 - v2
-    edges[graphList<KeyType>::vertexOffset(vertex1)].erase(vertex2);
-
-    // delete edge v2 - v1
-    edges[graphList<KeyType>::vertexOffset(vertex2)].erase(vertex1);
+    auto it = edges[graphList<KeyType>::vertexOffset(vertex1)].begin(); // initialiazation done here for legibility
     
+    for (;it != edges[graphList<KeyType>::vertexOffset(vertex1)].end();++it)
+
+        if ( it->Key() == vertex2)
+        {
+            edges[graphList<KeyType>::vertexOffset(vertex1)].erase(it);
+            break;
+        }
+  
+    it = edges[graphList<KeyType>::vertexOffset(vertex2)].begin(); // initialiazation done here for legibility
+
+    for (;it != edges[graphList<KeyType>::vertexOffset(vertex2)].end();++it)
+        if ( it->Key() == vertex1)
+        {
+            edges[graphList<KeyType>::vertexOffset(vertex2)].erase(it);
+            break;
+        }
+    
+    graphList<KeyType>::edgeCount--;
     
 }
 
 template< class KeyType >
-void graphList<KeyType>::deleteEdge(edge<KeyType>&)
+void graphList<KeyType>::deleteEdge(edge<KeyType>& e)
 {
-    
+    vertex<KeyType> vert1, vert2;
+    getVertices(e,vert1,vert2);
+    deleteEdge(vert1.Key(), vert2.Key());
 }
 
 template< class KeyType >
@@ -437,20 +454,17 @@ bool graphList<KeyType>::edgeExists(edge<KeyType>& e)
 template< class KeyType >
 void graphList<KeyType>::printEdges()
 {
-    std::cout<<"Edges from ";
+    std::cout<<"\nEdges from: ";
     
     int i = 0;
     
     for (auto v1 = edges.begin(); v1 < edges.end(); ++v1, ++i)
-        if ( !( v1->size() == 0 ) )
-        {
-            std::cout<<graphList<KeyType>::vertices[i].Key()<<": ";
-            
+    {       if (i < graphList<KeyType>::vertexCount)
+             std::cout<<"\n "<<graphList<KeyType>::vertices[i].Key()<<": ";
+        
             for (auto v2 = v1->begin(); v2 != v1->end(); ++v2)
                 std::cout<<v2->Key() <<" ";
-            
-            std::cout<<"\n ";
-        }
+    }
   
 }
 
